@@ -3,8 +3,35 @@ import express from "express";
 import authRoutes from "./routes/authRoutes.js";
 import inventory from "./routes/inventoryRoute.js";
 import { connectDB } from "./config/db.js";
+import cors from "cors";
 
 dotenv.config();
+
+const allowedOrigins = [
+  "https://inventory-app-ten-black.vercel.app",
+  "http://localhost:5173", // for local dev
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin (Postman, mobile apps)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+// IMPORTANT: allow preflight
+app.options("*", cors());
 
 //express app
 const app = express();
