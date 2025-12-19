@@ -7,6 +7,9 @@ import cors from "cors";
 
 dotenv.config();
 
+//express app
+const app = express();
+
 const allowedOrigins = [
   "https://inventory-app-ten-black.vercel.app",
   "http://localhost:5173", // for local dev
@@ -32,9 +35,6 @@ app.use(
 
 // IMPORTANT: allow preflight
 app.options("*", cors());
-
-//express app
-const app = express();
 
 const PORT = process.env.PORT || 5000;
 
