@@ -33,9 +33,6 @@ app.use(
   })
 );
 
-// IMPORTANT: allow preflight
-app.options("/*", cors());
-
 const PORT = process.env.PORT || 5000;
 
 //middleware
