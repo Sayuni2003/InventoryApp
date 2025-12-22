@@ -13,7 +13,6 @@ This project was developed as a portfolio project to demonstrate practical, real
 - Inventory creation and management
 - Stock adjustments with full ledger history
 - Inventory ledger report (PDF export)
-- Real-time low stock notifications using Socket.IO
 - Protected routes with authentication and authorization
 - Clean, responsive UI built with Tailwind CSS
 
