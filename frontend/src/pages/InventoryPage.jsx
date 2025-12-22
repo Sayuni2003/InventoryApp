@@ -4,6 +4,7 @@ import { auth } from "../firebase/firebaseConfig";
 import axiosInstance from "../api/axiosInstance";
 import InventoryHistory from "../components/inventory/InventoryHistory";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { toast } from "react-toastify";
 
 const InventoryPage = () => {
   const [inventory, setInventory] = useState([]);
@@ -123,6 +124,11 @@ const InventoryPage = () => {
           },
         }
       );
+
+      if (adjustData.reason.trim().length < 6) {
+        toast.error("Reason must be at least 6 characters long");
+        return;
+      }
 
       // Update UI with backend result
       setInventory((prev) =>

@@ -15,13 +15,39 @@ function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      toast.success("User logged in Successfully !!", {
+      toast.success("User logged in successfully!", {
         position: "top-center",
       });
       navigate("/redirect");
     } catch (error) {
-      toast.error("Invalid Credentials");
+      let message = "Login failed. Please try again.";
+
+      switch (error.code) {
+        case "auth/user-not-found":
+          message = "No account found with this email.";
+          break;
+        case "auth/wrong-password":
+          message = "Incorrect password.";
+          break;
+        case "auth/invalid-email":
+          message = "Invalid email address.";
+          break;
+        case "auth/too-many-requests":
+          message = "Too many attempts. Please wait and try again.";
+          break;
+        default:
+          message = "Invalid email or password.";
+      }
+
+      toast.error(message, {
+        position: "top-center",
+      });
     }
+  };
+
+  const fillDemoAccount = (email, password) => {
+    setEmail(email);
+    setPassword(password);
   };
 
   return (
@@ -108,6 +134,32 @@ function Login() {
               </div>
             </form>
             {/* END FORM */}
+            {/* DEMO ACCOUNTS */}
+            <div className="mt-6 rounded-lg border border-blue-500/30 bg-blue-500/5 p-4">
+              <p className="text-sm font-medium text-blue-400 mb-3">
+                Demo Accounts (For Reviewers)
+              </p>
+
+              <div className="space-y-3 text-sm text-neutral-300">
+                <div className="border-t border-neutral-700 pt-3 flex items-center justify-between">
+                  {/* User 2 */}
+                  <div>
+                    <p className="font-medium text-neutral-200">User</p>
+                    <p className="text-neutral-400 text-xs">sara2@gmail.com</p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => fillDemoAccount("sara2@gmail.com", "123456")}
+                    className="px-3 py-1.5 text-xs font-medium rounded-md
+                   bg-blue-600/20 text-blue-400
+                   hover:bg-blue-600/30 transition"
+                  >
+                    Use
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
