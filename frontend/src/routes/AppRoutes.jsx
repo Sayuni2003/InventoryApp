@@ -38,7 +38,7 @@ export const appRoutes = [
     path: "/",
     component: HomePage,
     requiresAuth: true,
-    allowedRoles: ["user", "admin", "guest"], // future-ready
+    allowedRoles: ["user", "admin"],
   },
   {
     path: "/inventories",
