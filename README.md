@@ -26,13 +26,11 @@ This project was developed as a portfolio project to demonstrate practical, real
 - Tailwind CSS
 - Firebase Authentication
 - Axios
-- Socket.IO Client
 
 ### Backend
 - Node.js
 - Express.js
 - MongoDB with Mongoose
-- Socket.IO
 - JWT-based authorization
 
 ---
