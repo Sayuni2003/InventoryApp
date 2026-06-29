@@ -30,7 +30,7 @@ app.use(
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-  })
+  }),
 );
 
 const PORT = process.env.PORT || 5000;
@@ -45,6 +45,10 @@ app.get("/", (req, res) => {
 //routes
 app.use("/api/inventory", inventory);
 app.use("/api/auth", authRoutes);
+
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
 
 //connect at db
 connectDB();

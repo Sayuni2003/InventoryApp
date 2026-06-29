@@ -23,6 +23,8 @@ export const AuthProvider = ({ children }) => {
         const token = await fbUser.getIdToken();
 
         try {
+          await fetch("https://inventory-app-7nrq.onrender.com/health");
+
           const res = await axiosInstance.get("/api/auth/me", {
             headers: { Authorization: `Bearer ${token}` },
           });
